@@ -18,13 +18,6 @@ namespace ReadonlyStruct
 			// This method ensures no copies of 'this' are created
 			public override string ToString() => $"({X}, {Y})";
 		}
-
-		static void ProcessPoint(Point p)
-		{
-			// This method causes a defensive copy if Point is passed by value
-			Console.WriteLine(p);
-		}
-
 		static void ProcessReadonlyPoint(in ReadonlyPoint p)
 		{
 			// No defensive copy is created
@@ -40,10 +33,17 @@ namespace ReadonlyStruct
 
 			public override string ToString() => $"({X}, {Y})";
 		}
+		static void ProcessPoint(Point p)
+		{
+			// This method causes a defensive copy if Point is passed by value
+			Console.WriteLine(p);
+		}
+
+
 		static void Main(string[] args)
         {
 			var normalPoint = new Point(10, 20);
-			var readonlyPoint = new ReadonlyPoint(10, 20);
+			var readonlyPoint = new ReadonlyPoint(30, 40);
 
 			Console.WriteLine("Processing normal struct...");
 			MeasureExecutionTime(() => {
